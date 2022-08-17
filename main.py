@@ -88,6 +88,7 @@ def _get_check_status(
 def main():
     """ """
     max_wait_time = int(ENV_VARS["MAX_WAIT_TIME"])
+    interval = int(ENV_VARS["INTERVAL")
     elapsed_time = 0
 
     print(f"Using ref: {ENV_VARS['REF']}")
@@ -136,10 +137,10 @@ def main():
             break
 
         print(
-            f"Not all checks are in an allowed state ({ENV_VARS['ALLOWED_STATES']}). Waiting {ENV_VARS['INTERVAL']} seconds.",
+            f"Not all checks are in an allowed state ({ENV_VARS['ALLOWED_STATES']}). Waiting {interval} seconds.",
         )
-        elapsed_time += ENV_VARS["INTERVAL"]
-        time.sleep(ENV_VARS["INTERVAL"])
+        elapsed_time += interval
+        time.sleep(interval)
     else:
         print("Reached wait time limit.")
         print("::set-output name=status::false")
