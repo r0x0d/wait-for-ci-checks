@@ -21,6 +21,7 @@ ENV_VARS = {
     "CHECK_NAMES": [],
     "ALLOWED_STATES": [],
     "MAX_WAIT_TIME": "",
+    "INTERVAL": "",
 }
 # override defaults with environment variables
 for env, default in ENV_VARS.items():
@@ -135,10 +136,10 @@ def main():
             break
 
         print(
-            f"Not all checks are in an allowed state ({ENV_VARS['ALLOWED_STATES']}). Waiting 5 seconds.",
+            f"Not all checks are in an allowed state ({ENV_VARS['ALLOWED_STATES']}). Waiting {ENV_VARS['INTERVAL']} seconds.",
         )
-        elapsed_time += 5
-        time.sleep(5)
+        elapsed_time += ENV_VARS["INTERVAL"]
+        time.sleep(ENV_VARS["INTERVAL"])
     else:
         print("Reached wait time limit.")
         print("::set-output name=status::false")
