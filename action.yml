@@ -1,12 +1,54 @@
-name: 'Container Action Template'
-description: 'Get started with Container actions'
-author: 'GitHub'
-inputs: 
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+name: "Wait for CI Checks Action"
+description: "Wait for any checks to complete in your workflow."
+author: "r0x0d"
+branding:
+  icon: "check-circle"
+  color: "green"
+inputs:
+  token:
+    description: "The GitHub token to use for making API requests."
+    required: false
+    default: ${{ github.token }}
+  ref:
+    description: "The Git ref of the commit you want to poll for a passing check."
+    required: false
+    default: ${{ github.sha }} || ${{ github.ref }}
+  repository:
+    description: "The name of the GitHub repository (with owner) you want to poll for a passing check. Example: r0x0d/wait-for-ci-checks."
+    required: false
+    default: ${{ repository }}
+  checkNames:
+    description: >
+      The name of the GitHub check to wait for. For example, `build` or `deploy`.
+
+      A list can be used in the following format: `build;deploy;other-workflow``
+    required: true
+  allowedStates:
+    description: >
+      The name of the states to validate against the GitHub check. For example, `completed` or `in_progress`
+
+      A list can be used in the following format: `completed;in_progress`
+    required: false
+    default: "completed"
+  maxWaitTime:
+    description: "The number of seconds to wait for the check to complete."
+    required: false
+    default: "720"
+
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.myInput }}
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    REF: ${{ inputs.ref }}
+    REPOSITORY: ${{ inputs.repository }}
+    GH_TOKEN: ${{ inputs.token }}
+    CHECK_NAMES: ${{ inputs.checkNames }}
+    ALLOWED_STATES: ${{ inputs.allowedStates }}
+    MAX_WAIT_TIME: ${{ inputs.maxWaitTime }}
+
+outputs:
+  status:
+    description: >
+      A status determining if the run workflow ended successfully or not.
+
+      The output can be either: success|failed
