@@ -1,7 +1,5 @@
-FROM alpine:3.10
+FROM gcr.io/distroless/python3-debian10
 
-COPY LICENSE README.md /
+COPY LICENSE README.MD wait_for_ci_checks entrypoint.sh /app/
 
-COPY entrypoint.sh /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]

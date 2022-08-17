@@ -1,3 +1,3 @@
 #!/bin/sh -l
 
-echo "hello $1"
+python -m wait_for_ci_checks
