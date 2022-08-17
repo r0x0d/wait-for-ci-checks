@@ -26,7 +26,9 @@ ENV_VARS = {
 for env, default in ENV_VARS.items():
     if env in ("CHECK_NAMES", "ALLOWED_STATES"):
         ENV_VARS[env] = (
-            os.getenv(env).split(";") if ";" in os.getenv(env) else os.getenv(env, default)
+            os.getenv(env).split(";")
+            if ";" in os.getenv(env)
+            else os.getenv(env, default)
         )
     else:
         ENV_VARS[env] = os.getenv(env, default)
@@ -89,12 +91,12 @@ def main():
 
     print(f"Using ref: {ENV_VARS['REF']}")
     print(f"Using repository: {ENV_VARS['REPOSITORY']}")
-    if isinstance(ENV_VARS['CHECK_NAMES'], list):
+    if isinstance(ENV_VARS["CHECK_NAMES"], list):
         print(f"Using checkNames: {','.join(ENV_VARS['CHECK_NAMES'])}")
     else:
         print(f"Using checkNames: {ENV_VARS['CHECK_NAMES']}")
 
-    if isinstance(ENV_VARS['ALLOWED_STATES'], list):
+    if isinstance(ENV_VARS["ALLOWED_STATES"], list):
         print(f"Using allowedStates: {','.join(ENV_VARS['ALLOWED_STATES'])}")
     else:
         print(f"Using allowedStates: {ENV_VARS['ALLOWED_STATES']}")
@@ -104,10 +106,10 @@ def main():
             f"Remaining time in seconds until failure: {max_wait_time - elapsed_time} seconds",
         )
         all_checks_in_repo = _get_checks_in_repository(
-                repository=ENV_VARS["REPOSITORY"],
-                ref=ENV_VARS["REF"],
-                token=ENV_VARS["GH_TOKEN"],
-            )
+            repository=ENV_VARS["REPOSITORY"],
+            ref=ENV_VARS["REF"],
+            token=ENV_VARS["GH_TOKEN"],
+        )
 
         if not all_checks_in_repo:
             print("Couldn't find any checks for current ref.")
