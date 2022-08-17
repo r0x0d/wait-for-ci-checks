@@ -12,7 +12,7 @@ inputs:
   ref:
     description: "The Git ref of the commit you want to poll for a passing check."
     required: false
-    default: ${{ github.sha }} || ${{ github.ref }}
+    default: ${{ github.sha || github.ref }}
   repository:
     description: "The name of the GitHub repository (with owner) you want to poll for a passing check. Example: r0x0d/wait-for-ci-checks."
     required: false
