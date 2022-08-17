@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 import time
 from typing import Any
 from urllib.request import Request
@@ -86,6 +87,11 @@ def main():
     max_wait_time = int(ENV_VARS["MAX_WAIT_TIME"])
     elapsed_time = 0
 
+    print(f"Using ref: {ENV_VARS['REF']}")
+    print(f"Using repository: {ENV_VARS['REPOSITORY']}")
+    print(f"Using checkNames: {ENV_VARS['CHECK_NAMES']}")
+    print(f"Using allowedStates: {ENV_VARS['ALLOWED_STATES']}")
+
     while elapsed_time <= max_wait_time:
         print(
             f"Remaining time in seconds until failure: {max_wait_time - elapsed_time} seconds",
@@ -127,3 +133,7 @@ def main():
         print("::set-output name=myOutput::false")
 
     return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
