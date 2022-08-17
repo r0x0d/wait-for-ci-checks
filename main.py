@@ -26,7 +26,7 @@ ENV_VARS = {
 for env, default in ENV_VARS.items():
     if env in ("CHECK_NAMES", "ALLOWED_STATES"):
         ENV_VARS[env] = (
-            os.getenv(env).split(";") if ";" in env else os.getenv(env)
+            os.getenv(env).split(";") if ";" in env else os.getenv(env, default)
         )
     else:
         ENV_VARS[env] = os.getenv(env, default)
