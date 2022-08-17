@@ -30,6 +30,10 @@ inputs:
       A list can be used in the following format: `completed;in_progress`
     required: false
     default: "completed"
+  interval:
+    description: "The number of seconds to wait between API calls."
+    required: false
+    default: "20"
   maxWaitTime:
     description: "The number of seconds to wait for the check to complete."
     required: false
@@ -44,7 +48,9 @@ runs:
     GH_TOKEN: ${{ inputs.token }}
     CHECK_NAMES: ${{ inputs.checkNames }}
     ALLOWED_STATES: ${{ inputs.allowedStates }}
+    INTERVAL: ${{ inputs.interval }}
     MAX_WAIT_TIME: ${{ inputs.maxWaitTime }}
+
 
 outputs:
   status:
