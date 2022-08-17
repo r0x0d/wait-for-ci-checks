@@ -16,7 +16,7 @@ inputs:
   repository:
     description: "The name of the GitHub repository (with owner) you want to poll for a passing check. Example: r0x0d/wait-for-ci-checks."
     required: false
-    default: ${{ repository }}
+    default: ${{ github.repository }}
   checkNames:
     description: >
       The name of the GitHub check to wait for. For example, `build` or `deploy`.
