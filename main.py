@@ -88,7 +88,7 @@ def _get_check_status(
 def main():
     """ """
     max_wait_time = int(ENV_VARS["MAX_WAIT_TIME"])
-    interval = int(ENV_VARS["INTERVAL"))
+    interval = int(ENV_VARS["INTERVAL"])
     elapsed_time = 0
 
     print(f"Using ref: {ENV_VARS['REF']}")
