@@ -8,7 +8,7 @@ inputs:
   token:
     description: "The GitHub token to use for making API requests."
     required: false
-    default: ${{ github.token }}
+    default: ${{ secrets.GITHUB_TOKEN }}
   ref:
     description: "The Git ref of the commit you want to poll for a passing check."
     required: false
