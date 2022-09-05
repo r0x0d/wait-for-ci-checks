@@ -35,9 +35,9 @@ file, let's get a example here real quick:
 ```yaml
 name: Deploy
 on:
-  push: 
+  push:
     branches: [ main ]
-  pull_request: 
+  pull_request:
     branches: [ main ]
 
 jobs:
@@ -66,9 +66,9 @@ completion, you can do so by extending the `checkNames` property this way:
 ```yaml
 name: Deploy
 on:
-  push: 
+  push:
     branches: [ main ]
-  pull_request: 
+  pull_request:
     branches: [ main ]
 
 jobs:
@@ -93,7 +93,7 @@ jobs:
 
 If you find any bugs or you want to improve the way this action works, just send
 a issue asking for the specific implementation you have in mind, or if you're
-confident enough to come up with a pull request, please do so as well. 
+confident enough to come up with a pull request, please do so as well.
 
 Also, don't be shy! Every idea, request and suggestion will be treated with kind
 and respect.
